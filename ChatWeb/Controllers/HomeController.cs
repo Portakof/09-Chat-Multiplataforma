@@ -10,6 +10,15 @@ namespace ChatWeb.Controllers
     {
         public ActionResult Index()
         {
+            Models.Request.User oUser = new Models.Request.User();
+            oUser.Name = "Felipe";
+            oUser.City = "San Pascual";
+            oUser.Email = "felipin@mail.com";
+            oUser.Password = "123456";
+
+            Utils.RequestUtil oRequesUtil = new Utils.RequestUtil();
+            Models.WS.Reply oReply = oRequesUtil.Execute<Models.Request.User>("http://localhost:51592/api/User/","post",oUser);
+
             return View();
         }
 
