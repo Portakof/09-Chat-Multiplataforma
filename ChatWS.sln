@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatWeb", "ChatWeb\ChatWeb.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatDestop", "ChatDestop\ChatDestop.csproj", "{57480E74-541B-4A85-A91E-AAE917B7618F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesChat", "UtilitiesChat\UtilitiesChat.csproj", "{93932CFC-122B-4BD2-8792-0EB0EE64B1C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{57480E74-541B-4A85-A91E-AAE917B7618F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57480E74-541B-4A85-A91E-AAE917B7618F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57480E74-541B-4A85-A91E-AAE917B7618F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93932CFC-122B-4BD2-8792-0EB0EE64B1C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93932CFC-122B-4BD2-8792-0EB0EE64B1C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93932CFC-122B-4BD2-8792-0EB0EE64B1C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93932CFC-122B-4BD2-8792-0EB0EE64B1C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

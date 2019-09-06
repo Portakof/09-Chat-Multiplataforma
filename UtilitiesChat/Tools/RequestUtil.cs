@@ -1,14 +1,15 @@
-﻿using ChatWeb.Models.WS;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using UtilitiesChat.Models.WS;
 
-namespace ChatWeb.Utils
+namespace UtilitiesChat
 {
     public class RequestUtil
     {
@@ -18,7 +19,7 @@ namespace ChatWeb.Utils
             oReply = new Reply();
         }
 
-        public Reply Execute<T>(string url,string method, T objectRequest)
+        public Reply Execute<T>(string url, string method, T objectRequest)
         {
             oReply.result = 0;
             string result = "";
@@ -41,7 +42,7 @@ namespace ChatWeb.Utils
                 }
 
                 var oHttpResponse = (HttpWebResponse)request.GetResponse();
-                using (var oStreamReader=new StreamReader(oHttpResponse.GetResponseStream()))
+                using (var oStreamReader = new StreamReader(oHttpResponse.GetResponseStream()))
                 {
                     result = oStreamReader.ReadToEnd();
                 }
@@ -49,13 +50,13 @@ namespace ChatWeb.Utils
                 oReply = JsonConvert.DeserializeObject<Reply>(result);
 
             }
-            catch(TimeoutException e)
+            catch (TimeoutException e)
             {
                 oReply.message = "Servidor sin respuesta";
             }
             catch (Exception e)
             {
-                
+
                 oReply.message = "Ocurrio un error";
             }
 

@@ -1,0 +1,7 @@
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\bin\Debug\UtilitiesChat.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\bin\Debug\UtilitiesChat.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\bin\Debug\Newtonsoft.Json.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\bin\Debug\Newtonsoft.Json.xml
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\obj\Debug\UtilitiesChat.csprojResolveAssemblyReference.cache
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\obj\Debug\UtilitiesChat.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\UtilitiesChat\obj\Debug\UtilitiesChat.pdb

@@ -146,3 +146,5 @@ D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\es\System
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\obj\Debug\ChatWeb.csprojResolveAssemblyReference.cache
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\obj\Debug\ChatWeb.dll
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\obj\Debug\ChatWeb.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\UtilitiesChat.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\UtilitiesChat.pdb

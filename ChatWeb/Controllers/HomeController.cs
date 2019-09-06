@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UtilitiesChat;
+using ChatWeb.Business;
 
 namespace ChatWeb.Controllers
 {
@@ -11,13 +13,13 @@ namespace ChatWeb.Controllers
         public ActionResult Index()
         {
             Models.Request.User oUser = new Models.Request.User();
-            oUser.Name = "Felipe";
+            oUser.Name = "Gatito";
             oUser.City = "San Pascual";
-            oUser.Email = "felipin@mail.com";
+            oUser.Email = "Ratoncito@mail.com";
             oUser.Password = "123456";
 
-            Utils.RequestUtil oRequesUtil = new Utils.RequestUtil();
-            Models.WS.Reply oReply = oRequesUtil.Execute<Models.Request.User>("http://localhost:51592/api/User/","post",oUser);
+            RequestUtil oRequesUtil = new RequestUtil();
+            UtilitiesChat.Models.WS.Reply oReply = oRequesUtil.Execute<Models.Request.User>(Constants.Url.REGISTER,"post",oUser);
 
             return View();
         }
@@ -25,7 +27,7 @@ namespace ChatWeb.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
 
