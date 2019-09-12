@@ -21,6 +21,10 @@ namespace ChatWeb.Controllers
         [HttpPost]
         public ActionResult Register(ChatWeb.Models.ViewModels.RegisterViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             Models.Request.User oUser = new Models.Request.User();
             oUser.Name = model.Name;
             oUser.City = model.City;
