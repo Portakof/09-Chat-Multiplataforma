@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'D:\Descargassssss\001 varios\Curso de C# .NET\02\ChatWS\Models\DB.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\Models\DB.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

@@ -21,6 +21,7 @@ namespace ChatWS.Models
         public System.DateTime date_create { get; set; }
         public string name { get; set; }
         public string city { get; set; }
+        public string access_token { get; set; }
     
         public virtual cState cState { get; set; }
     }

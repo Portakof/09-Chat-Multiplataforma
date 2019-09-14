@@ -18,11 +18,12 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="idState" Type="int" Nullable="false" />
           <Property Name="date_create" Type="datetime" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="access_token" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_user_cState">
           <End Role="cState" Type="Self.cState" Multiplicity="1" />
@@ -70,11 +71,12 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="idState" Type="Int32" Nullable="false" />
           <Property Name="date_create" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="access_token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="cState" Relationship="ChatDBModel.FK_user_cState" FromRole="user" ToRole="cState" />
         </EntityType>
         <Association Name="FK_user_cState">
@@ -106,6 +108,7 @@
           <EntitySetMapping Name="user">
             <EntityTypeMapping TypeName="ChatDBModel.user">
               <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="access_token" ColumnName="access_token" />
                 <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="date_create" ColumnName="date_create" />

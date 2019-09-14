@@ -12,7 +12,7 @@ namespace ChatWS.Controllers
 {
     public class UserController : ApiController
     {
-        [HttpGet]
+        /*[HttpGet]
         public Reply Get()
         {
             Reply oReply = new Reply();
@@ -29,12 +29,12 @@ namespace ChatWS.Controllers
                 oReply.data = lst;
             }
             return oReply;
-        }
+        }*/
 
        [HttpPost]
-        public Reply Register([FromBody] Models.Request.User model)
+        public Repl Register([FromBody] Models.Request.User model)
         {
-            Reply oReply = new Reply();
+            Repl oReply = new Repl();
 
             try
             {            

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ChatWS.Models.WS
 {
-    public class Reply
+    public class Repl
     {
         public string message { get; set; }
         public int result { get; set; }

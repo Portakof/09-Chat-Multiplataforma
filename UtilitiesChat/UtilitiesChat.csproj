@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\WS\AccessRequest.cs" />
     <Compile Include="Models\WS\Reply.cs" />
+    <Compile Include="Tools\Encrypt.cs" />
     <Compile Include="Tools\RequestUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,6 +12,7 @@
     <EntitySetMapping Name="user">
       <EntityTypeMapping TypeName="ChatDBModel.user">
         <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="access_token" ColumnName="access_token" />
           <ScalarProperty Name="city" ColumnName="city" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="date_create" ColumnName="date_create" />
