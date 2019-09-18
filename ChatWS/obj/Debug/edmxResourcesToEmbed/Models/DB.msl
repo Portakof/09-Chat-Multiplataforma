@@ -4,8 +4,8 @@
     <EntitySetMapping Name="cState">
       <EntityTypeMapping TypeName="ChatDBModel.cState">
         <MappingFragment StoreEntitySet="cState">
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -14,6 +14,7 @@ namespace UtilitiesChat
     public class RequestUtil
     {
         public Reply oReply { get; set; }
+
         public RequestUtil()
         {
             oReply = new Reply();
@@ -33,7 +34,7 @@ namespace UtilitiesChat
                 request.Method = method;
                 request.PreAuthenticate = true;
                 request.ContentType = "application/json;charset=utf-8";
-                request.Timeout = 1000;
+                request.Timeout = 60000;
 
                 using (var oStreamWriter = new StreamWriter(request.GetRequestStream()))
                 {

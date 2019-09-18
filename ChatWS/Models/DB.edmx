@@ -49,6 +49,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ChatDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cState" EntityType="ChatDBModel.cState" />
+          <EntitySet Name="user" EntityType="ChatDBModel.user" />
+          <AssociationSet Name="FK_user_cState" Association="ChatDBModel.FK_user_cState">
+            <End Role="cState" EntitySet="cState" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="cState">
           <Key>
             <PropertyRef Name="id" />
@@ -57,14 +65,6 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="user" Relationship="ChatDBModel.FK_user_cState" FromRole="cState" ToRole="user" />
         </EntityType>
-        <EntityContainer Name="ChatDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="cState" EntityType="Self.cState" />
-          <EntitySet Name="user" EntityType="ChatDBModel.user" />
-          <AssociationSet Name="FK_user_cState" Association="ChatDBModel.FK_user_cState">
-            <End Role="cState" EntitySet="cState" />
-            <End Role="user" EntitySet="user" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
@@ -100,8 +100,8 @@
           <EntitySetMapping Name="cState">
             <EntityTypeMapping TypeName="ChatDBModel.cState">
               <MappingFragment StoreEntitySet="cState">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -213,7 +213,6 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\UserViewModel.cs" />
-    <Compile Include="Models\WS\Repl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

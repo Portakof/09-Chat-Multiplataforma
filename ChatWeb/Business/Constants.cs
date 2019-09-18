@@ -23,7 +23,14 @@ namespace ChatWeb.Business
             {
                 get
                 {
-                    return URL_API + "/api/User/";
+                    return URL_API + "api/User/";
+                }
+            }
+            public static string ACCESS
+            {
+                get
+                {
+                    return URL_API + "api/Access/";
                 }
             }
         }

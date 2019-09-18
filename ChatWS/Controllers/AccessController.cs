@@ -1,9 +1,5 @@
-﻿using ChatWS.Models.WS;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using UtilitiesChat.Models.WS;
 using ChatWS.Models;
@@ -31,12 +27,21 @@ namespace ChatWS.Controllers
                     db.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
+                    UserResponse oUserResponse = new UserResponse();
+                    oUserResponse.AccessToken = AccessToken;
+                    oUserResponse.Name = oUser.name;
+                    oUserResponse.City = oUser.city;
+
                     oR.result = 1;
-                    oR.data = AccessToken;
+                    oR.data = oUserResponse;
                 }
                 else
                 {
                     oR.message = "Datos incorrectos";
+                    //pepe@mail.com
+                    //8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+                    //8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92
+                    
                 }
             }
 

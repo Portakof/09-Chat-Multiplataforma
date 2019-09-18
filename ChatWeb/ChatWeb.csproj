@@ -143,11 +143,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business\Constants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LobbyController.cs" />
+    <Compile Include="Filter\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Request\User.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserAccessViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +193,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Lobby\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

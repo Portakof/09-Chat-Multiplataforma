@@ -1,12 +1,7 @@
 ﻿using ChatWS.Models.ViewModel;
-using ChatWS.Models.WS;
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using UtilitiesChat.Models.WS;
 
 namespace ChatWS.Controllers
 {
@@ -32,9 +27,9 @@ namespace ChatWS.Controllers
         }*/
 
        [HttpPost]
-        public Repl Register([FromBody] Models.Request.User model)
+        public Reply Register([FromBody] Models.Request.User model)
         {
-            Repl oReply = new Repl();
+            Reply oReply = new Reply();
 
             try
             {            
