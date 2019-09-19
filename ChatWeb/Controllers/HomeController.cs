@@ -9,11 +9,6 @@ namespace ChatWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Login()
         {
@@ -36,11 +31,20 @@ namespace ChatWeb.Controllers
             UtilitiesChat.Models.WS.Reply oReply = 
                 oRequesUtil.Execute<AccessRequest>(Constants.Url.ACCESS, "post", oAR);
 
-            //UserResponse oUserResponse = JsonConvert.DeserializeObject<Reply>(oReply.data);
+            UserResponse oUserResponse = 
+                JsonConvert.DeserializeObject<UserResponse>
+                (JsonConvert.SerializeObject(oReply.data));
 
-            Session["User"] = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+            if (oReply.result == 1)
+            {
+                Session["User"] = oUserResponse;
+                return RedirectToAction("Index", "Lobby");
+            }
+            //Session["User"] = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
 
-            return View();
+            ViewBag.error = "Datos Incorrectos";
+
+            return View(model);
         }
 
         [HttpGet]

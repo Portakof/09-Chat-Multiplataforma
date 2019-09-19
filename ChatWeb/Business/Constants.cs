@@ -33,6 +33,20 @@ namespace ChatWeb.Business
                     return URL_API + "api/Access/";
                 }
             }
+            public static string SignalR
+            {
+                get
+                {
+                    return URL_API + "signalr/";
+                }
+            }
+            public static string SignalRHub
+            {
+                get
+                {
+                    return URL_API + "signalr/hubs/";
+                }
+            }
         }
     }
 }

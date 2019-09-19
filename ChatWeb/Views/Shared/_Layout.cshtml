@@ -38,5 +38,25 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="@ChatWeb.Business.Constants.Url.SignalRHub"></script>
+
+    <script>
+        $(function (){
+            $.support.cors = true;
+
+            $.connection.hub.url = "@ChatWeb.Business.Constants.Url.SignalR";
+            var Counter = $.connection.counterHub;
+
+            Counter.client.enterUser = function () {
+                alert("Entro un chaval");
+            }
+
+            $.connection.hub.start().done();
+        })
+    </script>
+
+
 </body>
 </html>

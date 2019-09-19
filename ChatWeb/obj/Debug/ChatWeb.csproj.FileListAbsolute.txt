@@ -148,3 +148,16 @@ D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\obj\Debug\Cha
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\obj\Debug\ChatWeb.pdb
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\UtilitiesChat.dll
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\UtilitiesChat.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.Security.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Owin.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.xml
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWeb\bin\Microsoft.Owin.Security.xml

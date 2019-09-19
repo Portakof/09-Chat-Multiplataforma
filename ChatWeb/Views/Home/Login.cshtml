@@ -2,13 +2,16 @@
 @{
     ViewBag.Title = "Inicio de sesion";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
-    
+
+    string error = (string)ViewBag.error;
+
 }
 
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
     <div class="col-md-12">
+        <div class="text-danger">@error</div>
         <form action="~/Home/Login" method="post">
             @Html.LabelFor(d => d.Email)
             @Html.TextBoxFor(d => d.Email, "", new { @class = "form-control" })
