@@ -7,6 +7,16 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="room">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idState" Type="int" Nullable="false" />
+    <Property Name="date_create" Type="datetime" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="user">
     <Key>
       <PropertyRef Name="id" />
@@ -20,6 +30,18 @@
     <Property Name="city" Type="varchar" MaxLength="50" />
     <Property Name="access_token" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_room_cState">
+    <End Role="cState" Type="Self.cState" Multiplicity="1" />
+    <End Role="room" Type="Self.room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="room">
+        <PropertyRef Name="idState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_user_cState">
     <End Role="cState" Type="Self.cState" Multiplicity="1" />
     <End Role="user" Type="Self.user" Multiplicity="*" />
@@ -34,7 +56,12 @@
   </Association>
   <EntityContainer Name="ChatDBModelStoreContainer">
     <EntitySet Name="cState" EntityType="Self.cState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_room_cState" Association="Self.FK_room_cState">
+      <End Role="cState" EntitySet="cState" />
+      <End Role="room" EntitySet="room" />
+    </AssociationSet>
     <AssociationSet Name="FK_user_cState" Association="Self.FK_user_cState">
       <End Role="cState" EntitySet="cState" />
       <End Role="user" EntitySet="user" />

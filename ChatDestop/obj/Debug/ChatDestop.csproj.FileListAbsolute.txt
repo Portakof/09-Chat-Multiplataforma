@@ -1,0 +1,8 @@
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\ChatDestop.exe.config
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\ChatDestop.exe
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\ChatDestop.pdb
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.csprojResolveAssemblyReference.cache
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.Properties.Resources.resources
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.csproj.GenerateResource.Cache
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.exe
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.pdb

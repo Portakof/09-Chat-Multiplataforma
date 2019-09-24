@@ -2,7 +2,12 @@
 <Schema Namespace="ChatDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="ChatDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="cState" EntityType="ChatDBModel.cState" />
+    <EntitySet Name="room" EntityType="ChatDBModel.room" />
     <EntitySet Name="user" EntityType="ChatDBModel.user" />
+    <AssociationSet Name="FK_room_cState" Association="ChatDBModel.FK_room_cState">
+      <End Role="cState" EntitySet="cState" />
+      <End Role="room" EntitySet="room" />
+    </AssociationSet>
     <AssociationSet Name="FK_user_cState" Association="ChatDBModel.FK_user_cState">
       <End Role="cState" EntitySet="cState" />
       <End Role="user" EntitySet="user" />
@@ -14,7 +19,19 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="room" Relationship="ChatDBModel.FK_room_cState" FromRole="cState" ToRole="room" />
     <NavigationProperty Name="user" Relationship="ChatDBModel.FK_user_cState" FromRole="cState" ToRole="user" />
+  </EntityType>
+  <EntityType Name="room">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idState" Type="Int32" Nullable="false" />
+    <Property Name="date_create" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cState" Relationship="ChatDBModel.FK_room_cState" FromRole="room" ToRole="cState" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -30,6 +47,18 @@
     <Property Name="access_token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="cState" Relationship="ChatDBModel.FK_user_cState" FromRole="user" ToRole="cState" />
   </EntityType>
+  <Association Name="FK_room_cState">
+    <End Type="ChatDBModel.cState" Role="cState" Multiplicity="1" />
+    <End Type="ChatDBModel.room" Role="room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="room">
+        <PropertyRef Name="idState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_user_cState">
     <End Type="ChatDBModel.cState" Role="cState" Multiplicity="1" />
     <End Type="ChatDBModel.user" Role="user" Multiplicity="*" />

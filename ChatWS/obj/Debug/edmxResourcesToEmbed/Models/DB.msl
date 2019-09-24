@@ -9,6 +9,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="room">
+      <EntityTypeMapping TypeName="ChatDBModel.room">
+        <MappingFragment StoreEntitySet="room">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date_create" ColumnName="date_create" />
+          <ScalarProperty Name="idState" ColumnName="idState" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="user">
       <EntityTypeMapping TypeName="ChatDBModel.user">
         <MappingFragment StoreEntitySet="user">
