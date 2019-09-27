@@ -11,5 +11,6 @@ namespace UtilitiesChat.Models.WS
         public string AccessToken { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
+        public int Id { get; set; }
     }
 }

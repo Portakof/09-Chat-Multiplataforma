@@ -7,6 +7,17 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idRoom" Type="int" Nullable="false" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="text" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="date_create" Type="datetime" Nullable="false" />
+    <Property Name="idState" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="room">
     <Key>
       <PropertyRef Name="id" />
@@ -30,6 +41,42 @@
     <Property Name="city" Type="varchar" MaxLength="50" />
     <Property Name="access_token" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_message_cState">
+    <End Role="cState" Type="Self.cState" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="idState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_message_room">
+    <End Role="room" Type="Self.room" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="room">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="idRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_message_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_room_cState">
     <End Role="cState" Type="Self.cState" Multiplicity="1" />
     <End Role="room" Type="Self.room" Multiplicity="*" />
@@ -56,8 +103,21 @@
   </Association>
   <EntityContainer Name="ChatDBModelStoreContainer">
     <EntitySet Name="cState" EntityType="Self.cState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_message_cState" Association="Self.FK_message_cState">
+      <End Role="cState" EntitySet="cState" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_message_room" Association="Self.FK_message_room">
+      <End Role="room" EntitySet="room" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_message_user" Association="Self.FK_message_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
     <AssociationSet Name="FK_room_cState" Association="Self.FK_room_cState">
       <End Role="cState" EntitySet="cState" />
       <End Role="room" EntitySet="room" />

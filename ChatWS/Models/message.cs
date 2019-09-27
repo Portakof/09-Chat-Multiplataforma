@@ -12,22 +12,17 @@ namespace ChatWS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class room
+    public partial class message
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public room()
-        {
-            this.message = new HashSet<message>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
-        public int idState { get; set; }
+        public int idRoom { get; set; }
+        public int idUser { get; set; }
+        public string text { get; set; }
         public System.DateTime date_create { get; set; }
-        public string description { get; set; }
+        public int idState { get; set; }
     
         public virtual cState cState { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<message> message { get; set; }
+        public virtual room room { get; set; }
+        public virtual user user { get; set; }
     }
 }

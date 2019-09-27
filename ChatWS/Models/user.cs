@@ -14,6 +14,12 @@ namespace ChatWS.Models
     
     public partial class user
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user()
+        {
+            this.message = new HashSet<message>();
+        }
+    
         public int id { get; set; }
         public string email { get; set; }
         public string password { get; set; }
@@ -24,5 +30,7 @@ namespace ChatWS.Models
         public string access_token { get; set; }
     
         public virtual cState cState { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<message> message { get; set; }
     }
 }

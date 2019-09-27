@@ -19,6 +19,7 @@ namespace ChatWS.Models
         {
             this.room = new HashSet<room>();
             this.user = new HashSet<user>();
+            this.message = new HashSet<message>();
         }
     
         public int id { get; set; }
@@ -28,5 +29,7 @@ namespace ChatWS.Models
         public virtual ICollection<room> room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user> user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<message> message { get; set; }
     }
 }

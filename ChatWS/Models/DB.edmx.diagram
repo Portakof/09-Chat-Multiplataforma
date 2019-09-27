@@ -10,6 +10,10 @@
         <EntityTypeShape EntityType="ChatDBModel.user" Width="1.5" PointX="3" PointY="4" />
         <AssociationConnector Association="ChatDBModel.FK_room_cState" />
         <AssociationConnector Association="ChatDBModel.FK_user_cState" />
+        <EntityTypeShape EntityType="ChatDBModel.message" Width="1.5" PointX="5.25" PointY="2.625" />
+        <AssociationConnector Association="ChatDBModel.FK_message_cState" />
+        <AssociationConnector Association="ChatDBModel.FK_message_room" />
+        <AssociationConnector Association="ChatDBModel.FK_message_user" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
