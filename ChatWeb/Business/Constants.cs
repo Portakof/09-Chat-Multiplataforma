@@ -40,6 +40,13 @@ namespace ChatWeb.Business
                     return URL_API + "api/Room/";
                 }
             }
+            public static string MESSAGES
+            {
+                get
+                {
+                    return URL_API + "api/Messages/";
+                }
+            }
             public static string SignalR
             {
                 get

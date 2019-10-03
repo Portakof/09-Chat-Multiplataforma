@@ -34,7 +34,7 @@ namespace ChatWS.Controllers
                                                   {
                                                       Message = d.text,
                                                       Id = d.id,
-                                                      IdUser = d.idUser,
+                                                      IdUser = d.user.id,
                                                       UserName = d.user.name,
                                                       DateCreated = d.date_create,
                                                       TypeMessage = (
@@ -43,14 +43,14 @@ namespace ChatWS.Controllers
                                                                         {
                                                                             try
                                                                             {
-                                                                                if (d.idUser == oUserSession.Id)
+                                                                                if (d.user.id == oUserSession.Id)
                                                                                     return 1;
                                                                                 else
                                                                                     return 2;
                                                                             }
                                                                             catch
                                                                             {
-                                                                                return 2;
+                                                                                return 3;
                                                                             }
                                                                         }
                                                                         )()

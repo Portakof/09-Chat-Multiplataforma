@@ -24,7 +24,8 @@
 
 <script>
     function jsGo(idRoom) {
-        alert(idRoom);
+        document.location.href = "@Url.Content("~/chat/Messages/")" + "?id=" + idRoom;
+        //alert(idRoom);
     }
 </script>
 
