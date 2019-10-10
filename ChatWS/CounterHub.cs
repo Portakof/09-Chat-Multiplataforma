@@ -16,24 +16,48 @@ namespace ChatWS
             return base.OnConnected();
         }
 
-        public void Send(int idRoom, string username, int idUser, string message)
+        public void AddGroup(int idRoom)
         {
-            string fecha = DateTime.Now.ToString();
+            Groups.Add(Context.ConnectionId, idRoom.ToString());
+        }
 
+        public void Send(int idRoom, string userName, int idUser, string message, string AccessToken)
+        {
+            if (VerifyToken(AccessToken))
+            {
+                string fecha = DateTime.Now.ToString();
+
+                using (ChatDBEntities db = new ChatDBEntities()) 
+                {
+                    var oMessage = new message();
+                    oMessage.idRoom = idRoom;
+                    oMessage.date_create = DateTime.Now;
+                    oMessage.idUser = idUser;
+                    oMessage.text = message;
+                    oMessage.idState = 1;
+
+                    db.message.Add(oMessage);
+                    db.SaveChanges();
+                }
+
+                //Clients.All.sendChat(username, message, fecha, idUser);
+                Clients.Group(idRoom.ToString()).sendChat(userName, message, fecha, idUser);
+
+            }
+        }
+
+        protected bool VerifyToken(string AccessToken)
+        {
             using (ChatDBEntities db = new ChatDBEntities())
             {
-                var oMessage = new message();
-                oMessage.idRoom = idRoom;
-                oMessage.date_create = DateTime.Now;
-                oMessage.idUser = idUser;
-                oMessage.text = message;
-                oMessage.idState = 1;
+                var oUser = db.user.Where(d => d.access_token == AccessToken).FirstOrDefault();
 
-                db.message.Add(oMessage);
-                db.SaveChanges();
+                if (oUser != null)
+                {
+                    return true;
+                }
             }
-
-            Clients.All.sendChat(username, message,fecha,idUser);
+            return false;
         }
 
     }

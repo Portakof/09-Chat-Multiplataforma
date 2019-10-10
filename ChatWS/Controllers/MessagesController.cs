@@ -9,15 +9,16 @@ using ChatWS.Models;
 
 namespace ChatWS.Controllers
 {
-    public class MessagesController : BaseController
+    public class MessagesController : BaseController //de "BaseController de "ChatWS"" permite usar el metodo "VerifyToken"
     {
-        [HttpPost]
-        public Reply Get([FromBody] MessagesRequest model)
+        [HttpPost]  //el metodo es "post" porque recibe el "AccessToken"
+
+        public Reply Get([FromBody] MessagesRequest model)  //se recibe del "FromBody" el metodo "MessagesRequest" el cual en model trae el "IdRoom"
         {
-            Reply oR = new Reply();
+            Reply oR = new Reply();     //objeto que regresa los datos
             oR.result = 0;
 
-            if (!VerifyToken(model))
+            if (!VerifyToken(model))    //genera seguridad al verificar si el "AccessToken" es correcto
             {
                 oR.message = "Metodo no permitido";
                 return oR;
@@ -25,25 +26,26 @@ namespace ChatWS.Controllers
             
             try
             {
-                using(ChatDBEntities db = new ChatDBEntities())
+                using(ChatDBEntities db = new ChatDBEntities())     //se crea el objeto que maneja la conexion con la base de datos
                 {
-                    List<MessagesResponse> lst = (from d in db.message.ToList()
-                                                  where d.idState == 1
-                                                  orderby d.date_create descending
-                                                  select new MessagesResponse
+                    //se crea la lista con los datos a devolver
+                    List<MessagesResponse> lst = (from d in db.message.ToList()     //message es la tabla de la base datos 
+                                                  where d.idState == 1 && d.idRoom == model.IdRoom  //se toman los que esten activos
+                                                  orderby d.date_create descending //ordenar de forma descendente entrega los ultimos
+                                                  select new MessagesResponse       //se llena el objeto "MessagesResponse"
                                                   {
                                                       Message = d.text,
-                                                      Id = d.id,
-                                                      IdUser = d.user.id,
-                                                      UserName = d.user.name,
-                                                      DateCreated = d.date_create,
+                                                      Id = d.id,                                                      
+                                                      IdUser = d.user.id, 
+                                                      UserName = d.user.name,       //se aprobecha la conexion creada entre tablas para acceder a tabla "user" para obtener el Id
+                                                      DateCreated = d.date_create,  //se obtiene la fecha del mensaje
                                                       TypeMessage = (
-                                                                    new Func<int>(
-                                                                        () =>
+                                                                    new Func<int>(  //se crea la funcion y se especifica que devolvera un entero sea 1 o 2
+                                                                        () =>   //de esta forma se crea la funcion anonima
                                                                         {
                                                                             try
                                                                             {
-                                                                                if (d.user.id == oUserSession.Id)
+                                                                                if (d.user.id == oUserSession.Id)   //se verifica si el mensaje es mio = 1 0 no que seria 2
                                                                                     return 1;
                                                                                 else
                                                                                     return 2;
@@ -55,9 +57,9 @@ namespace ChatWS.Controllers
                                                                         }
                                                                         )()
                                                                     )
-                                                  }).Take(20).ToList();
-                    oR.result = 1;
-                    oR.data = lst;
+                                                  }).Take(20).ToList(); //Take se utiliza para devolver los ultimos 20 mensajes
+                    oR.result = 1;  //
+                    oR.data = lst;  //carga la lista creada en el objeto tipo Reply
                 }
             }
             catch (Exception ex)
@@ -65,7 +67,7 @@ namespace ChatWS.Controllers
                 oR.message = "Ocurrio un error";
             }
 
-            return oR;
+            return oR;  //Retorna la lista que fue creada
         }
     }
 }
