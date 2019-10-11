@@ -280,3 +280,5 @@ D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\Microsoft.
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\es\Microsoft.AspNet.SignalR.Core.resources.dll
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\es\Microsoft.AspNet.SignalR.SystemWeb.resources.dll
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\es\Microsoft.Owin.resources.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatWS\bin\es\Microsoft.Owin.Security.resources.dll
