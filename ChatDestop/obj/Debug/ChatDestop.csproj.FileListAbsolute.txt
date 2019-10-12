@@ -10,4 +10,5 @@ D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\UtilitiesChat.dll
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\UtilitiesChat.pdb
 D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\bin\Debug\Newtonsoft.Json.xml
-D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.Form1.resources
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.FrmLogin.resources
+D:\01 UDI\02 HTML\09 Curso de C# .NET\Chat Multiplataforma\ChatDestop\obj\Debug\ChatDestop.FrmMain.resources

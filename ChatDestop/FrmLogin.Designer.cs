@@ -1,6 +1,6 @@
 ﻿namespace ChatDestop
 {
-    partial class Form1
+    partial class FrmLogin
     {
         /// <summary>
         /// Variable del diseñador necesaria.
