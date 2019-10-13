@@ -17,6 +17,9 @@ namespace ChatDestop
 {
     public partial class FrmMain : Form
     {
+        int postYFinal = 10;
+        Panel lastPanel = null;
+
         public FrmMain()
         {
             InitializeComponent();
@@ -40,7 +43,7 @@ namespace ChatDestop
 
             iniciarSesionToolStripMenuItem.Enabled = true;
             cerrarSesionToolStripMenuItem.Enabled = false;
-            splitContainer1.Enabled = false;
+            splitContainerChat.Enabled = false;
         }
 
         #region HELPER
@@ -61,6 +64,9 @@ namespace ChatDestop
             cboRooms.DataSource = lst;
             cboRooms.DisplayMember = "Name";
             cboRooms.ValueMember = "Id";
+
+            //Obtenemos mensajes del chat
+            GetMessages();
         }
 
         private void SessionStart()
@@ -72,13 +78,88 @@ namespace ChatDestop
             {
                 iniciarSesionToolStripMenuItem.Enabled = false;
                 cerrarSesionToolStripMenuItem.Enabled = true;
-                splitContainer1.Enabled = true;
+                splitContainerChat.Enabled = true;
 
                 GetDataInit();
             }
         }
 
+        private void GetMessages()
+        {
+            int idRoom = 0;
+            panelMessages.Controls.Clear();
+            lastPanel = null;
+
+            try
+            {
+                idRoom = (int)cboRooms.SelectedValue;
+            }
+            catch { }
+
+            if (idRoom > 0)
+            {
+                List<MessagesResponse> lst = new List<MessagesResponse>();
+
+                MessagesRequest OMessagesRequest = new MessagesRequest();
+                OMessagesRequest.AccessToken = Session.oUser.AccessToken;    //se recibe o obtiene el objeto con el AccessToken 
+                OMessagesRequest.IdRoom = idRoom;                               //y el Idroom
+
+                RequestUtil oRequestUtil = new RequestUtil();   //Se crea un objeto y se hace la peticion en si al "MessagesController"
+                Reply oReply = oRequestUtil.Execute<MessagesRequest>(Constants.Url.MESSAGES, "post", OMessagesRequest);     //para traer todos los mensajes de la sala o room
+
+                lst = JsonConvert.DeserializeObject<List<MessagesResponse>>(JsonConvert.SerializeObject(oReply.data));   //deserealizamos el obejto "oReply" el cual trae la lista de mensajes
+
+                lst = lst.OrderBy(d => d.DateCreated).ToList(); //se oredena la la lista en forma ascendente
+
+                foreach (MessagesResponse oMessage in lst)
+                {
+                    AddMessage(oMessage);
+                }
+
+            }
+        }
+
+        private void AddMessage(MessagesResponse oMessage)
+        {
+            Panel oPanel = new Panel();
+
+            oPanel.Width = panelMessages.Width -30;
+            oPanel.Height = 70;
+            oPanel.BackColor = Color.LightGray;
+            //oPanel.Location = new Point(10, postYFinal);
+            //postYFinal += oPanel.Height + 10;
+
+            if (lastPanel == null)
+            {
+                oPanel.Location = new Point(10, 10);
+            }
+            else
+            {
+                oPanel.Location = new Point(10, lastPanel.Location.Y + lastPanel.Height + 10);
+            }
+
+            lastPanel = oPanel;
+
+            panelMessages.Controls.Add(oPanel);
+            panelMessages.ScrollControlIntoView(oPanel);
+
+            //Agregamos hijos
+            TextBox txtMessage = new TextBox();
+            txtMessage.Text = oMessage.Message;
+            txtMessage.Location = new Point(10, 10);
+            txtMessage.Width = oPanel.Width - 20;
+            txtMessage.ReadOnly = true;
+            txtMessage.BorderStyle = BorderStyle.None;
+            oPanel.Controls.Add(txtMessage);
+        }
+
         #endregion
 
+        private void cboRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //postYFinal = 10;
+            //panelMessages.Controls.Clear();
+            GetMessages();
+        }
     }
 }
