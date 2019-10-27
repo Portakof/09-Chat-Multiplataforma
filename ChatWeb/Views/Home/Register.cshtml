@@ -1,21 +1,31 @@
-﻿@model ChatWeb.Models.ViewModels.RegisterViewModel
+﻿
+<!--//De esta manera la vista recibe un modelo en este caso el creado "RegisterViewModel"-->
+@model ChatWeb.Models.ViewModels.RegisterViewModel 
 @{
     ViewBag.Title = "Registroooo";
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";  //Se especifica el "Layout" que utilizara esta vista para que no use el que viene por defecto
+
     }
 
 <h2>@ViewBag.Title</h2>
 
 <div class="row">
     <div class="col-md-12">
-        <form action="~/Home/Register" method="post">
-            @Html.LabelFor(d => d.Email)
+        <!--Con "form" se crea un formulario donde iran los controles que usara el usuario-->
+        <!--Cuando se presiona el boton "Guardar" se ejecuata el metodo "action" del "form" en este caso "action="~/Home/Register" -->
+        <!--"~/Home/Register" especifica la ruta del controlador al cual debe ingresar en este caso "Home" seguido de su metodo "Register"-->
+        <!--"post" especifica cual de los metodos "Register" debe ingresar en este caso el que tiene  "[HttpPost]" -->
+
+        <form action="~/Home/Register" method="post">   <!--De esta manera el formulario "form" llena la clase "RegisterViewModel" y se incrusta en el modelo creado en "Register"-->
+            <!--"@Html" son helpers que permiten hacer los componentes o controles en HTML ya con el modelo para que automaticamente se llene el modelo-->
+            <!--En la carpeta "Content" en el archivo "Site.css" se modifica unas lineas que hacen los componentes pequeños y generan inconvenientes con "bootstrap" lo cual no los hace "Responsi"-->    
+            <!---->
+            @Html.LabelFor(d => d.Email)    <!--Se crea un "Label" con el valor que tiene "RegisterViewModel"-->
             @Html.TextBoxFor(d => d.Email, "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(d=>d.Email,"",new { @class="text-danger" })<br />
+            @Html.ValidationMessageFor(d=>d.Email,"",new { @class="text-danger" })<br />    <!--se usan para mostrar los errores que generan los "DataAnnotations" y "text-danger" es para que salgan en color rojo-->
 
             @Html.LabelFor(d => d.Password)
-            @Html.PasswordFor(d => d.Password, new { @class = "form-control" })
+            @Html.PasswordFor(d => d.Password, new { @class = "form-control" }) <!--Se crea un "TextBox" con el valor que tiene "RegisterViewModel"-->
             @Html.ValidationMessageFor(d => d.Password, "", new { @class = "text-danger" })<br />
 
             @Html.LabelFor(d => d.Password2)
@@ -30,7 +40,8 @@
             @Html.TextBoxFor(d => d.City, "", new { @class = "form-control" })
             @Html.ValidationMessageFor(d => d.City, "", new { @class = "text-danger" })
 
-            <input type = "submit" value = "Guardar"/>
+            
+            <input type = "submit" value = "Guardar"/>    <!--Se crea un "Button" de tipo submit envia automaticamente los datos existentes en los textbox-->
 
         </form> 
     </div>

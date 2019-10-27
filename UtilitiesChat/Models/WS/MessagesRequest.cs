@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace UtilitiesChat.Models.WS
 {
     //ES request porque es la que manda el cliente
-    //despues de ejecutarse "MessagesRequest" este mismo llama a "SecurityRequest"
+    //Dependiendo del "IdRoom" se enviaran los mensajes de esa sala
+    //despues de ejecutarse "MessagesRequest" este mismo llama a "SecurityRequest" y se obtiene por herencia el "AccessToken"
 
     public class MessagesRequest : SecurityRequest  //hereda de SecurityRequest para recibir de una el AccessToken
     {

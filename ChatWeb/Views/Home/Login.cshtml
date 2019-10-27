@@ -1,9 +1,10 @@
-﻿@model ChatWeb.Models.ViewModels.UserAccessViewModel
+﻿<!--//De esta manera la vista recibe un modelo en este caso el creado "UserAccessViewModel"-->
+@model ChatWeb.Models.ViewModels.UserAccessViewModel
 @{
     ViewBag.Title = "Inicio de sesion";
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";  //Se especifica el "Layout" que utilizara esta vista para que no use el que viene por defecto
 
-    string error = (string)ViewBag.error;
+    string error = (string)ViewBag.error;   //se crea la variable "error" la cual contiene el mensaje de error creado en "HomeController" metodo "Login"
 
 }
 
@@ -11,19 +12,30 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="text-danger">@error</div>
-        <form action="~/Home/Login" method="post">
-            @Html.LabelFor(d => d.Email)
+
+        <!--se usa la variable "error" la cual contiene el mensaje de error creado en "HomeController" metodo "Login"-->
+        <div class="text-danger">@error</div>   <!--class="text-danger" es para mostrar el texto en color rojo-->
+
+        <!--Con "form" se crea un formulario donde iran los controles que usara el usuario-->
+        <!--Cuando se presiona el boton "Iniciar" se ejecuata el metodo "action" del "form" en este caso "action="~/Home/Login" -->
+        <!--"~/Home/Login" especifica la ruta del controlador al cual debe ingresar en este caso "Home" seguido de su metodo "Login"-->
+        <!--"post" especifica cual de los metodos "Login" debe ingresar en este caso el que tiene  "[HttpPost]" -->
+
+        <form action="~/Home/Login" method="post">   <!--De esta manera el formulario "form" llena la clase "UserAccessViewModel" y se incrusta en el modelo creado en "Login"-->
+        <!--"@Html" son helpers que permiten hacer los componentes o controles en HTML ya con el modelo para que automaticamente se llene el modelo-->
+        <!--En la carpeta "Content" en el archivo "Site.css" se modifica unas lineas que hacen los componentes pequeños y generan inconvenientes con "bootstrap" lo cual no los hace "Responsi"-->
+        <!---->
+            @Html.LabelFor(d => d.Email)    <!--Se crea un "Label" con el valor que tiene "UserAccessViewModel"-->
             @Html.TextBoxFor(d => d.Email, "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" })<br />    <!--se usan para mostrar los errores que generan los "DataAnnotations" y "text-danger" es para que salgan en color rojo-->
 
             @Html.LabelFor(d => d.Password)
-            @Html.PasswordFor(d => d.Password, new { @class = "form-control" })
+            @Html.PasswordFor(d => d.Password, new { @class = "form-control" })     <!--Se crea un "TextBox" con el valor que tiene "RegisterViewModel"-->
             @Html.ValidationMessageFor(d => d.Password, "", new { @class = "text-danger" })<br />
 
             
 
-            <input type="submit" value="Iniciar" />
+            <input type="submit" value="Iniciar" />    <!--Se crea un "Button" de tipo submit envia automaticamente los datos existentes en los textbox-->
 
         </form>
     </div>

@@ -11,6 +11,7 @@ namespace ChatWeb
     {
         public void Configuration(IAppBuilder app)
         {
+            //Se configura para que se pueda trabajar el signalR
             app.MapSignalR();
         }
     }

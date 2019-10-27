@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace UtilitiesChat.Models.WS
 {
+    //Esta clase se usa para recibir los datos necesarios para realizar la validacion del "login" y la base datos
+
     public class AccessRequest
     {
         public string Email { get; set; }

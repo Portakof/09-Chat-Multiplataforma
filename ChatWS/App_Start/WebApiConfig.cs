@@ -20,6 +20,8 @@ namespace ChatWS
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            //Estas lineas de codigo obligan a que toda solicitud que se realice al API o "ChatWS"
+            //la respuesta o return que realiza que se genera se convierta a "json".
             var formatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             formatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
 

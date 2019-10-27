@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
 
 namespace ChatWeb.Models.ViewModels
 {
+    //Esta clase se crea para representar datos en una vista en esta caso la vista del "Login"
     public class UserAccessViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required]                      //Hace que el campo o textbox se obligatorio ingresarle datos  
+        [EmailAddress]                  //valida que el texto incluido se de tipo mail osea "@mail.com"
         public string Email { get; set; }
 
-        [Required]
+        [Required]                      //Hace que el campo o textbox se obligatorio ingresarle datos
         public string Password { get; set; }
     }
 }

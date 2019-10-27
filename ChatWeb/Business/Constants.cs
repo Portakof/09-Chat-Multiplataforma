@@ -13,7 +13,8 @@ namespace ChatWeb.Business
         {
             get
             {
-                return ConfigurationManager.AppSettings["url_ws"];
+                //De esta forma se optiene una propiedad del archivo "Web.config"
+                return ConfigurationManager.AppSettings["url_ws"];  //En "url_ws" contiene la direccion de conexion al servicio web "ChatWS"--key="url_ws" value="http://localhost:51592/"
             }
         }
 

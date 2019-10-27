@@ -1,7 +1,7 @@
 ﻿@model List<UtilitiesChat.Models.WS.ListRoomsResponse>
 @{
     ViewBag.Title = "Lobby";
-    //Model.First();
+    
 }
 
 <h2>@ViewBag.Title</h2>
@@ -9,13 +9,17 @@
 <div class="row">
 
     <div class="col-md-12">
-        @foreach (var oRoom in Model)
+        @foreach (var oRoom in Model)   //Recorre elemento por elemento del "Model" y lo va imprimiendo
         {
-            <div>
+            <!--Por cada Room o sala del Model organizara independientemente-->
+            <!--nombre de la sala "Name"-->
+            <!--Descripcion de la sala-->
+            <!--Un boton para poder ingresar a los mensajes existentes en esa sala-->
+            <div>   
                 @oRoom.Name<br />
                 @oRoom.Description<br />
                 <div style="text-align:center;">
-                    <input class="btn btn-success" type="button" value="Ir a la sala" onclick="jsGo(@oRoom.Id);" />
+                    <input class="btn btn-success" type="button" value="Ir a la sala" onclick="jsGo(@oRoom.Id);" /> <!--"onclick" llama a la funcion "jsG" para direccionar a los mensajes de la sala-->
                 </div>
             </div>
         }
@@ -23,6 +27,8 @@
 </div>
 
 <script>
+    //Direcciona la pagina donde se mostraran los mensajes de la sala indicada en este caso "ChatController" y el
+    //metodo a ejecutar "Messages" y se envia como parametro el "idRoom"
     function jsGo(idRoom) {
         document.location.href = "@Url.Content("~/chat/Messages/")" + "?id=" + idRoom;
         //alert(idRoom);

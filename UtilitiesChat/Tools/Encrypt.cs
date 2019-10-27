@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace UtilitiesChat.Tools
 {
+    //La siguiente función nos sirve para realizar una encriptación en SHA256 en C# .Net/
+    //Se encriptara la informacion ingresada por el usuario en el servicio web "ChatWeb"
+    //de esta forma no seran visibles las contraseña
+    //Recordar que tambien se encriptaran las contraseñas en la base datos "ChatDB"
+
     public class Encrypt
     {
         public static string GetSHA256(string str)

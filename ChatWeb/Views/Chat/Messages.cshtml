@@ -1,7 +1,10 @@
 ﻿@model List<UtilitiesChat.Models.WS.MessagesResponse>
 @{
     ViewBag.Title = "Chat";
+    //"oUserSession" en este objeto se guarda los datos de la sesion inciada
     UtilitiesChat.Models.WS.UserResponse oUserSession = (UtilitiesChat.Models.WS.UserResponse)Session["User"];
+
+    //Se recibe el "idRoom" que fue enviado desde "ChatWeb" "ChatController"
     int idRoom = (int) ViewBag.idRoom;
 }
 
@@ -10,21 +13,28 @@
 <div class="row">
     <div class="col-md-12">
         <b>Mensajes de los usuarios de la sala</b>
+        <!--"height:70vh" es el tamaño que tendra la pantalla donde se mostraran los mensajes-->
+        <!--"overflow:auto" cuando se llena la caja donde estan todos los mensajes se crea automaticamente una barra de scroll-->
         <div style="height:70vh; border:1px solid #000; border-radius:10px; overflow:auto;" id="AllMessages">
-            @foreach (var oMessage in Model)
+            @foreach (var oMessage in Model)    //Recorre elemento por elemento del "Model" y lo va imprimiendo
             {
                 string classRight = "";
+                //Se verifica la ubicacion del mensaje, dado caso sera derecha o izquierda
+                //Al estilo wasap si el mensaje es tuyo lo pone a la derecha "messageRight", en caso contrario la izquierda
                 if (oUserSession.Id == oMessage.IdUser)
                 {
-                    classRight = "messageRight";
+                    classRight = "messageRight";    //Esta clase esta ubicada al final en la parte de abajo en la etiqueta "<style>"
                 }
-
+                
                 <div>
+                    <!--Por cada Mensaje del Model organizara independientemente-->
+                    <!--nombre del usuario propietario del mensaje "UserName"-->
+                    <!--"Message" texto del mensaje-->                    
                     <div class="message @classRight">
                         <b>@oMessage.UserName</b><br />
                         <div>@oMessage.Message</div>
-                        <div style="text-align:right; font-size:11px;">
-                            @oMessage.DateCreated.ToString()
+                        <div style="text-align:right; font-size:11px;">     <!--Estilo que contendra el mensaje cunado no sea tuyo al estilo wasap-->
+                            @oMessage.DateCreated.ToString()    <!--Fecha de creacion del mensaje-->
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -32,74 +42,98 @@
             }
         </div>
         <div style="height:5vh">
-            <input placeholder="Escribe un mensaje..." type="text" value="" id="txtMessage" style="width90%;" />
-            <input id="btnSend" type="button" value="Enviar" class="btn btn-success" />
+            <input placeholder="Escribe un mensaje..." type="text" value="" id="txtMessage" style="width90%;" />    <!--Caja de texto para escribir nuevos mensajes-->
+            <input id="btnSend" type="button" value="Enviar" class="btn btn-success" />     <!--Boton creado para enviar los nuevos mensajes-->
         </div>
     </div>
 </div>
 
+<!--"section scripts" esta seccion de codigo se ejecutara en "RenderSection("scripts", required: false)" de "_Layout.cshtml" despues de que cargan -->
+<!--lo "jquery" y "bootstrap"-->
 @section scripts
 {
-    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
-    <script src="@ChatWeb.Business.Constants.Url.SignalRHub"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>   <!--Se direcciona la libreria a usar por el signalR-->
+    <script src="@ChatWeb.Business.Constants.Url.SignalRHub"></script>  <!--Ingresamos a la url de "ChatWS" donde se crea la direccion del sinalR -->
 
     <script>
-            $(function (){
-                $.support.cors = true;
+            $(function (){  //Se crea la funcion anonima a ejecutarse
+                $.support.cors = true;      //De esta manera se permiten las solicitudes a un servidor externo
 
                 $.connection.hub.url = "@ChatWeb.Business.Constants.Url.SignalR";
-                var Counter = $.connection.counterHub;
+                var Counter = $.connection.counterHub;  //Se genera la conexion llamando a la clase creada "CounterHub.cs" del "ChatWS" 
 
-            Counter.client.enterUser = function () {
-                alert("Entro un chaval");
+                //se llama el metodo "enterUser" creado en "CounterHub.cs" 
+                //se crea una funcion anonima la cual se va a invocar siempre que ingrese algien al chat
+                //No importa el navegador donde se haya ingresado
+                Counter.client.enterUser = function () {    
+                alert("Entro un chaval");   //Mensaje de infomacion cuando ingrese un usuario
                 }
 
-            Counter.client.sendChat = function (userName, message, fecha, idUser) {
+//&&&&&&&&&&&&&&&&&&&&&  Esta seccion de codigo es cuando se recibe un mensaje del chat   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+                Counter.client.sendChat = function (userName, message, fecha, idUser) { //funcion recibe los parametros de "sendChat" que esta en "send" de "CounterHub.cs"
+
 
                 var classRight = "";
-
+                //Se verifica la ubicacion del mensaje, dado caso sera derecha o izquierda
+                //Al estilo wasap si el mensaje es tuyo lo pone a la derecha "messageRight", en caso contrario la izquierda
                 if (idUser == "@oUserSession.Id") {
 
-                    classRight = "messageRight";
+                    classRight = "messageRight";    //Esta clase esta ubicada al final en la parte de abajo en la etiqueta "<style>"
                 }
 
+                    //"newMessage" Esta cadena se crea para poder concatenar el mensaje nuevo recibido con los ya existentes en el chat
+                    //Y poder ser imprimida
                 var newMessage = '<div>' +
                     "<div class='message' " + classRight + "'>" +
-                        "<b>" + userName + "</b><br />" +
-                        "<div>" + message + "</div>" +
+                    "<b>" + userName + "</b><br />" +               //"userName" Nombre del usuario que envio el mensaje
+                    "<div>" + message + "</div>" +                  //"message" El mensaje escrito por el usuario
                         "<div style='text-align:right; font-size:11px;'>" +
-                            fecha +
+                    fecha +                                         //"fecha" Hora y fecha en la que fue creado el mensaje
                         "</div>"
                     "</div>"
                     "<div class='clearfix'></div>"
                     "</div>";
 
-                    $("#AllMessages").append(newMessage);
-                    $("#txtMessage").focus();
-                    $("#txtMessage").prop("value", "");
-                    $('#AllMessages').scrollTop($('#AllMessages')[0].scrollHeight);
+                    //"#AllMessages" Esta es la caja donde se ven todos los mensajes del chat, a esta se le agrega
+                    //la cadena "newMessage" que contiene el nuevo mensaje recibido
+                    $("#AllMessages").append(newMessage);   
+                    $("#txtMessage").focus();               //Se coloca nuevamente el foco al textbox para escribir un nuevo mensaje
+                    $("#txtMessage").prop("value", "");     //Se borra el mensaje anterior que tenia el textbox
+                    //De esta manera el scroll de la caja donde se ven todos los mensajes siempre esta abajo y muestra el ultimo mensaje ingresado
+                    $('#AllMessages').scrollTop($('#AllMessages')[0].scrollHeight); 
 
-            }
+                }
 
-            $.connection.hub.start().done(function () {
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Esta secion del codigo es cuando se envia un mensaje desde el Chat  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //$.connection.hub.start().done();   "done" si todo sale bien invoca al "CounterHub.cs"
+            $.connection.hub.start().done(function () {     //Esta funcion se crea para ejecutar o crear la programacion del "send" de "CounterHub.cs"
+
+                //Se llama al metodo "AddGroup" de "ChatWS/CounterHub.cs" en este se especifica donde se enviara
+                //el mensaje segun la sala selecionada o donde se este en el chat
                 Counter.server.addGroup(@idRoom)
 
-                $("#btnSend").click(function () {
+                $("#btnSend").click(function () {   //Se configura un evento click al boton id="btnSend", esto en jquery
 
+                    //Estos datos son los que se van a mandar al server "ChatWS"
                     var userName = "@oUserSession.Name";
                     var idRoom = "@idRoom"
                     var message = $("#txtMessage").prop("value");
                     var idUser = "@oUserSession.Id";
 
-                    if (message == "") {
+                    if (message == "") {    //Se valida si no hay mensaje no se haga nada
                         return;
                     }
 
+                    //De esta forma se envian los datos
+                    //"send" es el metodo creado en "CounterHub.cs"
                     Counter.server.send(idRoom, userName, idUser, message, "@oUserSession.AccessToken");
                 })
 
             });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         })
 
 </script>
